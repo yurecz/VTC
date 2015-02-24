@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>VTC</title>
+
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <script src="../bower_components/webcomponentsjs/webcomponents.js"></script>
+    <link rel="import" href="bower_components/sampler-scaffold/sampler-scaffold.html"></link>
+    <link rel="import" href="bower_components/voice-elements/dist/voice-recognition.html">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+
+  <body unresolved>
+    <voice-recognition id="recognition-element"></voice-recognition>
+    <sampler-scaffold fit>
+<!--      <paper-icon-button class="menuButton" icon="menu" ></paper-icon-button>-->
+      <core-item icon="settings" label="Voice Recognition Setup" url="voice-recognition-setup/page.html"></core-item>
+      <core-item icon="settings" label="Device Information" url="device-information/page.html"></core-item>
+    </sampler-scaffold>
+  </body>
+</html>
