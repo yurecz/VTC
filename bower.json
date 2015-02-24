@@ -8,7 +8,7 @@
   "private": true,
   "dependencies": {
     "polymer": "Polymer/polymer#latest",
-    "paper-elements": "Polymer/paper-elements#latest"
+    "paper-elements": "Polymer/paper-elements#latest",
     "core-elements": "Polymer/core-elements#latest"
   }
 }
