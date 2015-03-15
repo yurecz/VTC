@@ -1,0 +1,30 @@
+{
+  "name": "polymer-ymaps",
+  "keywords": "ymaps, yansdex, polymer, web-components",
+  "main": "polymer-ymaps.html",
+  "ignore": [
+    "demo.html",
+    "index.html"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#~0.5.0"
+  },
+  "devDependencies": {
+    "polymer-filters": "~0.1.0",
+    "core-elements": "Polymer/core-elements#~0.5.1",
+    "paper-elements": "Polymer/paper-elements#~0.5.1",
+    "web-component-tester": "Polymer/web-component-tester#~1.6.1",
+    "sinon": "wilmoore/sinon-browser-only"
+  },
+  "homepage": "https://github.com/just-boris/polymer-ymaps",
+  "_release": "a36a571da6",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "a36a571da637fb8d999356d0f787f1bbc679635e"
+  },
+  "_source": "git://github.com/just-boris/polymer-ymaps.git",
+  "_target": "master",
+  "_originalSource": "just-boris/polymer-ymaps",
+  "_direct": true
+}

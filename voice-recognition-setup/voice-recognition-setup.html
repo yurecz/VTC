@@ -1,23 +1,23 @@
-<html>
-  <head>
-    <script src="../bower_components/webcomponentsjs/webcomponents.js"></script>
-    <link rel="import" href="../bower_components/core-field/core-field.html">
-  </head>
 
-  <body>
+    <link href="../bower_components/polymer/polymer.html" rel="import">
+    <link rel="import" href="../bower_components/core-field/core-field.html">
+    <link rel="import" href="../bower_components/paper-toggle-button/paper-toggle-button.html">
     <polymer-element name="voice-recognition-setup">
       <template>
         <core-field>
-          <label>Active: {{active}}</label>
+          <label flex>Распознование голоса</label>
+          <paper-toggle-button flex label="Test" checked="{{active}}" on-change="{{toggleActivate}}"></paper-toggle-button><div></div>
+          <label flex></label>
         </core-field>
         <core-field>
-          <label>Text: {{text}}</label>
+          <label flex>Промежуточный результат</label><label flex>{{textI}}</label>
         </core-field>
         <core-field>
-          <label>Error: {{error}}</label>
+          <label flex>Окончательный результат</label><label flex>{{textF}}</label>
+        </core-field>
+        <core-field>
+          <label>Ошибка</label flex><label>{{errorCode}}</label><label flex>{{errorMessage}}</label>
         </core-field>
       </template>
         <script src="voice-recognition-setup.html.0.js"></script>
     </polymer-element>
-  </body>
-</html>

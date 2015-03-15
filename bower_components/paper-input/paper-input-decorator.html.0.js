@@ -309,6 +309,14 @@
         if (this._labelVisible) {
           this.input.placeholder = this.label;
         }
+      },
+
+      charCounterErrorAction: function(e) {
+        this.isInvalid = e.detail.hasError;
+
+        // If the allowed characters have been exceeded, show either the error
+        // icon, or the character counter, but not both.
+        this.$.errorIcon.hidden = e.detail.hideErrorIcon;
       }
 
     });

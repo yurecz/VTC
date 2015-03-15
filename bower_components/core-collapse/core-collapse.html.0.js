@@ -20,7 +20,7 @@
      * opened. If unspecified, the `core-collapse` itself is the target.
      *
      * @attribute target
-     * @type object
+     * @type Object
      * @default null
      */
     target: null,

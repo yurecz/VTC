@@ -55,7 +55,7 @@
 
       /**
        * Specifies the CSS class to be used to add to the selected element.
-       * 
+       *
        * @attribute selectedClass
        * @type string
        * @default 'core-selected'
@@ -87,7 +87,7 @@
        * an array of selected elements.
        * Note that you should not use this to set the selection. Instead use
        * `selected`.
-       * 
+       *
        * @attribute selectedItem
        * @type Object
        * @default null
@@ -97,9 +97,9 @@
       /**
        * In single selection, this returns the model associated with the
        * selected element.
-       * Note that you should not use this to set the selection. Instead use 
+       * Note that you should not use this to set the selection. Instead use
        * `selected`.
-       * 
+       *
        * @attribute selectedModel
        * @type Object
        * @default null
@@ -118,7 +118,7 @@
       selectedIndex: -1,
 
       /**
-       * Nodes with local name that are in the list will not be included 
+       * Nodes with local name that are in the list will not be included
        * in the selection items.  In the following example, `items` returns four
        * `core-item`'s and doesn't include `h3` and `hr`.
        *
@@ -138,9 +138,9 @@
       excludedLocalNames: '',
 
       /**
-       * The target element that contains items.  If this is not set 
+       * The target element that contains items.  If this is not set
        * core-selector is the container.
-       * 
+       *
        * @attribute target
        * @type Object
        * @default null
@@ -148,7 +148,7 @@
       target: null,
 
       /**
-       * This can be used to query nodes from the target node to be used for 
+       * This can be used to query nodes from the target node to be used for
        * selection items.  Note this only works if `target` is set
        * and is not `core-selector` itself.
        *
@@ -161,7 +161,7 @@
        *       <label><input type="radio" name="color" value="blue"> Blue</label> <br>
        *       <p>color = {{color}}</p>
        *     </form>
-       * 
+       *
        * @attribute itemsSelector
        * @type string
        * @default ''
@@ -189,7 +189,7 @@
       notap: false,
 
       defaultExcludedLocalNames: 'template',
-      
+
       observe: {
         'selected multi': 'selectedChanged'
       },
@@ -213,8 +213,8 @@
         if (!this.target) {
           return [];
         }
-        var nodes = this.target !== this ? (this.itemsSelector ? 
-            this.target.querySelectorAll(this.itemsSelector) : 
+        var nodes = this.target !== this ? (this.itemsSelector ?
+            this.target.querySelectorAll(this.itemsSelector) :
                 this.target.children) : this.$.items.getDistributedNodes();
         return Array.prototype.filter.call(nodes, this.itemFilter);
       },
@@ -257,7 +257,7 @@
 
       /**
        * Returns the selected item(s). If the `multi` property is true,
-       * this will return an array, otherwise it will return 
+       * this will return an array, otherwise it will return
        * the selected item or undefined if there is no selection.
        */
       get selection() {
@@ -273,7 +273,7 @@
           this.updateSelected();
         }
       },
-      
+
       updateSelected: function() {
         this.validateSelected();
         if (this.multi) {
@@ -288,7 +288,7 @@
 
       validateSelected: function() {
         // convert to an array for multi-selection
-        if (this.multi && !Array.isArray(this.selected) && 
+        if (this.multi && !Array.isArray(this.selected) &&
             this.selected != null) {
           this.selected = [this.selected];
         // use the first selected in the array for single-selection
@@ -298,7 +298,7 @@
           this.selected = s;
         }
       },
-      
+
       processSplices: function(splices) {
         for (var i = 0, splice; splice = splices[i]; i++) {
           for (var j = 0; j < splice.removed.length; j++) {
@@ -323,7 +323,7 @@
         var item = this.valueToItem(value);
         this.$.selection.select(item);
       },
-      
+
       setValueSelected: function(value, isSelected) {
         var item = this.valueToItem(value);
         if (isSelected ^ this.$.selection.isSelected(item)) {
@@ -342,12 +342,12 @@
         } else {
           this.selectedModel = null;
         }
-        this.selectedIndex = this.selectedItem ? 
+        this.selectedIndex = this.selectedItem ?
             parseInt(this.valueToIndex(this.selected)) : -1;
       },
-      
+
       valueToItem: function(value) {
-        return (value === null || value === undefined) ? 
+        return (value === null || value === undefined) ?
             null : this.items[this.valueToIndex(value)];
       },
 
@@ -431,7 +431,7 @@
           target = target.parentNode;
         }
       },
-      
+
       selectIndex: function(index) {
         var item = this.items[index];
         if (item) {
@@ -439,7 +439,7 @@
           return item;
         }
       },
-      
+
       /**
        * Selects the previous item. This should be used in single selection only.
        *
@@ -449,11 +449,11 @@
        * @returns the previous item or undefined if there is none
        */
       selectPrevious: function(wrapped) {
-        var i = wrapped && !this.selectedIndex ? 
+        var i = wrapped && !this.selectedIndex ?
             this.items.length - 1 : this.selectedIndex - 1;
         return this.selectIndex(i);
       },
-      
+
       /**
        * Selects the next item.  This should be used in single selection only.
        *
@@ -463,10 +463,10 @@
        * @returns the next item or undefined if there is none
        */
       selectNext: function(wrapped) {
-        var i = wrapped && this.selectedIndex >= this.items.length - 1 ? 
+        var i = wrapped && this.selectedIndex >= this.items.length - 1 ?
             0 : this.selectedIndex + 1;
         return this.selectIndex(i);
       }
-      
+
     });
   

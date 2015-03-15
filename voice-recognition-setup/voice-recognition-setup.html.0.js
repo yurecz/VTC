@@ -1,40 +1,73 @@
-          Polymer({
-            ready: function () {
+          Polymer('voice-recognition-setup',{
+            voiceProvider: null,
+            realStop: false,
+            active: false,
+            textI: "",
+            textF:"",
+            errorCode:"",
+            errorMessage: "",
+            attached: function () {
               var that = this;
-              var element = window.parent.document.querySelector('#recognition-element');
+              this.voiceProvider = document.querySelector('#recognition-element');
 
-                  if (element) {
-                    element.recognition.lang = "ru-RU";
-                    element.recognition.interimResults = false;
+                  if (this.voiceProvider) {
+                    this.voiceProvider.recognition.lang = "ru-RU";
+                    this.voiceProvider.recognition.interimResults = true;
+                    this.voiceProvider.recognition.continuous = true;
 
-                    element.addEventListener('error', function(e) {
-                      that.error = "type:" + e.detail.error+",text:" + e.detail.message;
-                      that.active = false;
-                    });
+                    this.voiceProvider.recognition.addEventListener('error', this.errorRecognition.bind(this) );
 
-                    element.addEventListener('start', function(e) {
-                      that.active = e.returnValue;
-                    });
+                    this.voiceProvider.recognition.addEventListener('start', this.startRecognition.bind(this) );
 
-                    element.addEventListener('stop', function(e) {
-                      element.start();
-                    });
+                    this.voiceProvider.recognition.addEventListener('end', this.endRecognition.bind(this) );
 
-                    element.recognition.addEventListener('result', function(e) {
-                      for (var i = e.resultIndex; i < e.results.length; ++i) {
-                        that.text += e.results[i][0].transcript;
-                        e.result = that.text;
-                      }
-                    });
+                    this.voiceProvider.recognition.addEventListener('result', this.resultRecognition.bind(this) );
 
                     try {
-                      element.start();
+                      this.voiceProvider.recognition.start();
                     } catch(err) {
-                      that.active = true;
+                      this.active = true;
                     }
 
                   }
             },
-            active: false,
-            text: ""
+            toggleActivate:function(){
+              if (!this.active){
+                this.realStop = true;
+                this.voiceProvider.recognition.abort();
+              } else {
+                this.voiceProvider.recognition.start();
+              }
+            },
+            startRecognition:function(e){
+              this.active = e.returnValue;
+            },
+            endRecognition:function(e){
+              if (!this.realStop){
+                this.voiceProvider.recognition.start();
+              } else {
+                this.active = false;
+                this.realStop = false;
+              }
+            },
+            resultRecognition:function(e){
+                      for (var i = e.resultIndex; i < e.results.length; ++i) {
+                        if (e.results[i].isFinal) {
+                          this.textF = "";
+                          this.textF += e.results[i][0].transcript;
+                        } else {
+                          this.textI = "";
+                          this.textI += e.results[i][0].transcript;
+                        }
+                      }
+            },
+            errorRecognition:function(e){
+              if (e.error != "no-speech"){
+                this.errorCode = e.error;
+                this.errorMessage = e.message;
+                this.active = false;
+              } else {
+                this.voiceProvider.recognition.star();
+              }
+            }
           });

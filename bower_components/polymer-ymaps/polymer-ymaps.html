@@ -1,0 +1,65 @@
+<html><head><link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="ymaps-api.html">
+
+<!--
+Element providing yandex-map for your site.
+
+##### Example
+```
+<yandex-map latitude="{{latitude}}" longitude="{{longitude}}" zoom="{{zoom}}"></yandex-map>
+```
+@element yandex-map
+@status alpha
+@homepage http://just-boris.github.io/polymer-ymaps
+-->
+</head><body><polymer-element name="yandex-map" attributes="latitude longitude zoom autoFit">
+  <template>
+    <style id="style">
+      :host {
+        position: relative;
+      }
+      #map {
+        position: absolute;
+        overflow: hidden;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+      }
+    </style>
+    <ymaps-api id="api" on-ready="{{createMap}}"></ymaps-api>
+    <div id="map"></div>
+    <content id="markers" select="yandex-map-marker"></content>
+  </template>
+  <script src="polymer-ymaps.html.0.js"></script>
+</polymer-element>
+
+
+<!--
+Element representing map marker for &lt;yandex-map&gt;.
+It should be placed only inside that element
+
+##### Example
+```
+<yandex-map latitude="{{latitude}}" longitude="{{longitude}}" zoom="{{zoom}}">
+  <yandex-map-marker latitude={{marker.latitude}} longitude={{marker.longitude}}></yandex-map-marker>
+</yandex-map>
+```
+
+
+@element yandex-map-marker
+@status alpha
+@homepage http://just-boris.github.io/polymer-ymaps
+-->
+<polymer-element name="yandex-map-marker" attributes="latitude longitude iconContent">
+  <template>
+    <style>
+      :host {
+        display: none;
+      }
+    </style>
+    <ymaps-api id="api" on-ready="{{createMarker}}"></ymaps-api>
+  </template>
+  <script src="polymer-ymaps.html.1.js"></script>
+</polymer-element>
+</body></html>

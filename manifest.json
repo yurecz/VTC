@@ -3,8 +3,8 @@
   "name": "VTC",
   "short_name": "VTC",
   "description": "",
-  "version": "0.0.2",
-  "minimum_chrome_version": "38",
+  "version": "0.0.5",
+  "minimum_chrome_version": "40",
 
   "icons": {
     "16": "assets/icon_16.png",
@@ -16,5 +16,9 @@
       "scripts": ["background.js"]
     }
   },
- "permissions": [ "audioCapture" ]
+ "content_security_policy": "script-src 'self' https://api-maps.yandex.ru/2.1/?lang=ru_RU; object-src 'self'",
+ "permissions": [
+        "audioCapture",
+        "webview"
+ ]
 }
